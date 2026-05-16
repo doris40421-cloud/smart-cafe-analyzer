@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>雲端資料庫菜單</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #2c3e50; color: white; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>🕷️ 爬蟲大數據 —— 雲端資料庫完整清單</h1>
+    <p>以下資料為動態網頁爬取後，即時儲存於 Render PostgreSQL 的內容：</p>
+    
+    <table>
+        <tr>
+            <th>商品名稱</th>
+            <th>價格 (TWD)</th>
+            <th>型人分類標籤 (Tag)</th>
+        </tr>
+        {% for item in menu_items %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>${{ item.price }}</td>
+            <td>{{ item.tag }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <br><br>
+    <a href="/">⬅️ 返回管理後台</a>
+</body>
+</html>
