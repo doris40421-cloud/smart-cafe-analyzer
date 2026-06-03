@@ -24,8 +24,9 @@
 
 應用程式展示層 (Web Application)： 基於 Flask 框架開發的網頁端，即時從雲端資料庫撈取數據，進行動態情境分析與前端渲染。
 
+---
 📁 專案標準目錄架構（範本）
-Plaintext
+
 smart-cafe-analyzer/
 ├── app/                  # Flask 核心應用程式模組
 │   ├── __init__.py       # App 初始化、連線 Render DB、動態建表邏輯
