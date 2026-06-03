@@ -15,26 +15,24 @@
 
 ---
 
-## 🛠️ 技術棧 (Tech Stack)
+🧱 系統技術架構
+本專案採用三層式架構設計，確保資料流與運算邏輯分離：
 
-* **網頁後端框架 (Web Framework):** Python / Flask 3.1.3
-* **資料庫 (Database):** PostgreSQL (託管於 Render 雲端平台)
-* **資料庫驅動 (Database Driver):** pg8000
-* **硬體/邊緣端技術 (Edge Computing):** NVIDIA Jetson 邊緣運算平台環境整合
-* **自動化腳本 (Data Scraper):** Requests / 數據預處理與標籤關聯化
-* **生產環境部署 (Deployment):** Gunicorn WSGI 伺服器
+資料擷取與邊緣輸入層： 透過 scrape_menu.py 進行動態網頁資料收集；並由邊緣端裝置（模擬器 test_remote.py）即時定時回傳環境人流數據。
 
----
+雲端資料儲存層 (Backend Storage)： 部署於 Render 雲端平台之 PostgreSQL 關聯式資料庫，負責維護商品菜單與歷史人流軌跡。
 
-## 📁 專案架構 (Project Structure)
+應用程式展示層 (Web Application)： 基於 Flask 框架開發的網頁端，即時從雲端資料庫撈取數據，進行動態情境分析與前端渲染。
 
-```text
+📁 專案標準目錄架構（範本）
+Plaintext
 smart-cafe-analyzer/
-├── app/
-│   ├── __init__.py      # 初始化 Flask App、配置 Render PostgreSQL 雲端連線並自動建立資料表
-│   ├── routes.py        # 核心業務邏輯：撈取最新人流、執行型人判定、動態篩選推薦餐點
-│   └── templates/       # 網頁前端模板（index.html, menu.html）
-├── run.py               # 本地端開發伺服器啟動進入點
-├── scrape_menu.py       # 咖啡廳菜單爬蟲與型人標籤自動化寫入腳本
-├── test_remote.py       # NVIDIA Jetson 邊緣端即時人流數據上傳模擬器
-└── requirements.txt     # 專案相依套件清單
+├── app/                  # Flask 核心應用程式模組
+│   ├── __init__.py       # App 初始化、連線 Render DB、動態建表邏輯
+│   ├── routes.py         # 網頁路由與動態型人推薦邏輯 (Persona Analytics)
+│   └── templates/        # 前端網頁 HTML 模板 (index.html, menu.html)
+├── run.py                # 本地/生產環境 Web 伺服器啟動點
+├── scrape_menu.py        # 網路爬蟲與資料庫初始化寫入腳本
+├── test_remote.py        # 遠端數據上傳測試（模擬邊緣運算裝置輸入）
+├── requirements.txt      # 專案相依套件環境清單 (Flask, pg8000, requests 等)
+└── README.md             # 專案說明文件（GitHub 門面）
