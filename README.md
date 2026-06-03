@@ -26,7 +26,6 @@
 
 ---
 📁 專案標準目錄架構（範本）
-
 smart-cafe-analyzer/
 ├── app/                  # Flask 核心應用程式模組
 │   ├── __init__.py       # App 初始化、連線 Render DB、動態建表邏輯
